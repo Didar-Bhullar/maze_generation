@@ -15,24 +15,25 @@ typedef struct Cell{
 } Cell;
 
 Cell cells[size * size];
-Cell *current_cell;
+int current_cell_index;
+int random_neighbor_index;
 int valid_neighbor_matrix[4]; //top, bottom, left, right
 int cells_left_to_visit = size * size;
 
 void setup();
 void print_cells();
-int *get_valid_neighbor_matrix(int valid_neighbor_matrix[]);
-Cell get_valid_neighbor(int valid_neighbor_matrix[]);
+void generate_valid_neighbor_matrix();
+int get_random_neighbor();
+void break_walls();
 
 int main(void) { 
     setup();
     print_cells();
 
-    int *matrix = get_valid_neighbor_matrix(valid_neighbor_matrix);
+    generate_valid_neighbor_matrix();
 
     for(int i = 0; i < 4; i++){
-        printf("neigbor at index: %d, with value: %d\n", i, *matrix);
-        matrix++;
+        printf("neigbor at index: %d, with value: %d\n", i, valid_neighbor_matrix[i]);
     }
 
     return 0;
@@ -56,54 +57,62 @@ void setup() {
         cells[i] = cell;
     }
 
-    current_cell = &cells[3]; // start from 0,0: Top left corner; First cell
-    current_cell->visited = true;
+    //current_cell = &cells[0]; // start from 0,0: Top left corner; First cell
+    current_cell_index = 4;
+    //current_cell->visited = true;
+    cells[current_cell_index].visited = true;
 
     for(int i = 0; i < 4; i++) {
         valid_neighbor_matrix[i] = 0;
     }
 
-    cells[4].visited = true;
+    cells[3].visited = true;
+}
+
+void break_walls() {
+    // if from current index, index + 1, then break right wall for current, left wall for soon to be new current
+    // if from current index, index + -1, then break left wall for current, right wall for soon to be new current
+    // if from current index, index + size, then break bottom wall for current, top wall for soon to be new current
+    // if from current index, index - size , then break top wall for current, bottom wall for soon to be new current
+}
+
+int get_random_neighbor(){
+    // return 0 if random neighbor found
+    // return 1 if random neighbor found
 
 }
 
-Cell get_valid_neighbor(int valid_neighbor_matrix[]){
 
-}
+void generate_valid_neighbor_matrix () {
+    int cur_x = cells[current_cell_index].x;
+    int cur_y = cells[current_cell_index].y;
 
-
-int * get_valid_neighbor_matrix (int valid_neighbor_matrix[]){
-    int cur_x = current_cell->x;
-    int cur_y = current_cell->y;
-
-    int top_index = current_cell->x + ((current_cell->y-1) * size);
-    int bottom_index = current_cell->x + ((current_cell->y+1) * size);
-    int left_index = current_cell->x-1 + ((current_cell->y) * size);
-    int right_index = current_cell->x+1 + ((current_cell->y) * size);
+    int top_index = cur_x + ((cur_y-1) * size);
+    int bottom_index = cur_x + ((cur_y+1) * size);
+    int left_index = cur_x-1 + ((cur_y) * size);
+    int right_index = cur_x+1 + ((cur_y) * size);
 
 
 
     //check top neighbor
-    if (current_cell->y - 1 >= 0 ) {
+    if (cur_y - 1 >= 0 ) {
         valid_neighbor_matrix[0] =  cells[top_index].visited ? 0: 1;
     }
     
     //check bottom neighbor
-    if (current_cell->y + 1 <= (size -1)) { 
+    if (cur_y + 1 <= (size -1)) { 
         valid_neighbor_matrix[1] =  cells[bottom_index].visited ? 0: 1;
     }
 
     //check left neighbor
-    if (current_cell->x -1 >= 0) {
+    if (cur_x -1 >= 0) {
         valid_neighbor_matrix[2] =  cells[left_index].visited ? 0: 1;
     }
 
     //check right neighbor
-    if (current_cell->x + 1 <= (size-1)) {
+    if (cur_x + 1 <= (size-1)) {
         valid_neighbor_matrix[3] =  cells[right_index].visited ? 0: 1;
     }
-
-    return valid_neighbor_matrix;
 }
 
 void clear_valid_neighbor_matrix() {
