@@ -8,7 +8,7 @@ int main(void) {
     maze_init(&m);
     //print_maze(&m);
 
-    int index_test = 0;
+    int index_test = 4;
 
 
     int top_n_i;

@@ -20,7 +20,7 @@ bool top_neighbor(cell *c, int *storage){
     return false;
 };
 
-int bottom_neighbor(cell *c, int *storage){
+bool bottom_neighbor(cell *c, int *storage){
     if ((c->x) < (MAZE_SIZE -1)){
         *storage = (((c->x) + 1) * MAZE_SIZE) + ((c->y));
         return true;
@@ -28,7 +28,7 @@ int bottom_neighbor(cell *c, int *storage){
     return false;
 };
 
-int left_neighbor(cell *c, int *storage){
+bool left_neighbor(cell *c, int *storage){
     if ((c->y) > 0){
         *storage =  (((c->x)) * MAZE_SIZE) + ((c->y) -1);
         return true;
@@ -36,7 +36,7 @@ int left_neighbor(cell *c, int *storage){
     return false;
 };
 
-int right_neighbor(cell *c, int *storage){
+bool right_neighbor(cell *c, int *storage){
     if ((c->y) < (MAZE_SIZE -1)){
         *storage = (((c->x)) * MAZE_SIZE) + ((c->y)+1);
         return true;

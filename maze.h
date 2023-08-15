@@ -16,9 +16,9 @@ typedef struct maze {
 void maze_init(maze *m);
 
 bool top_neighbor(cell *c, int *storage);
-int bottom_neighbor(cell *c, int *storage);
-int left_neighbor(cell *c, int *storage);
-int right_neighbor(cell *c, int *storage);
+bool bottom_neighbor(cell *c, int *storage);
+bool left_neighbor(cell *c, int *storage);
+bool right_neighbor(cell *c, int *storage);
 
 void print_maze(maze *m);
 
