@@ -24,6 +24,8 @@ void clear_neighbor_list(int neighbor_list[]);
 bool has_neighbor(cell *c, maze *m, int neighbor_list[]);
 int random_neighbor(int neighbor_list[]);
 
+void break_wall(maze *m, int *c_index, int *t_index);
+
 void print_maze(maze *m);
 
 #endif
