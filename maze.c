@@ -1,4 +1,5 @@
 #include "maze.h"
+#include "time.h"
 
 void maze_init(maze *m) {
     cell c;
@@ -9,6 +10,8 @@ void maze_init(maze *m) {
         c.index = i;
         m->cells[i] = c;
     }
+
+    srand(time(NULL));
 }
 
 bool top_neighbor(cell *c, int *storage){
@@ -84,6 +87,20 @@ bool has_neighbor(cell *c, maze *m, int neighbor_list[]){
     return has_neighbor;      
 }
 
+int random_neighbor(int neighbor_list[]) {
+    while(true) {
+        int r = rand() % 4;
+        if (neighbor_list[r] != -1) {
+            return neighbor_list[r];
+        };
+    };
+}
+
+void clear_neighbor_list(int neighbor_list[]) {
+    for (int i = 0; i < 4; i++) { 
+        neighbor_list[i] = -1;
+    }
+}
 
 
 void print_maze(maze *m) { 

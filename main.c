@@ -3,34 +3,25 @@
 //#include "cell.h"
 
 int main(void) { 
+    stack s;
     maze m;
+    int current_index;
+    int neighbor_list[4];
+    clear_neighbor_list(neighbor_list);
 
+    stack_init(&s);
     maze_init(&m);
 
-    int index_test = 0;
+    m.cells[1].visited = true;
+    m.cells[3].visited = true;
 
-
-    int top_n_i;
-    int bot_n_i;
-    int left_n_i;
-    int right_n_i;
-
-    int neighbor_list[4] = { -1, -1, -1, -1};
-
-    has_neighbor(&(m.cells[index_test]), &m, neighbor_list);
-    for(int i = 0; i < 4; i++) {
-        printf("neighbor: %d\n", neighbor_list[i]);
+    if (has_neighbor(&(m.cells[4]), &m, neighbor_list)) {
+        int random_n = random_neighbor(neighbor_list);
+        clear_neighbor_list(neighbor_list);
+        printf("random neighbor: %d\n", random_n);
     }
 
-    //bool top = top_neighbor(&(m.cells[index_test]), &top_n_i);
-    //bool bottom = bottom_neighbor(&(m.cells[index_test]), &bot_n_i);
-    //bool left = left_neighbor(&(m.cells[index_test]), &left_n_i);
-    //bool right = right_neighbor(&(m.cells[index_test]), &right_n_i);
 
-    //printf("top neighbor exists: %d, top is: %d\n",top, top_n_i);
-    //printf("bottom neighbor exists: %d, bottom is: %d\n",bottom, bot_n_i);
-    //printf("left neighbor exists: %d, left is: %d\n",left, left_n_i);
-    //printf("right neighbor exists: %d, right is: %d\n",right, right_n_i);
-
+    stack_print(&s);
     return 0;
 }

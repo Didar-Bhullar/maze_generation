@@ -20,7 +20,9 @@ bool bottom_neighbor(cell *c, int *storage);
 bool left_neighbor(cell *c, int *storage);
 bool right_neighbor(cell *c, int *storage);
 
+void clear_neighbor_list(int neighbor_list[]);
 bool has_neighbor(cell *c, maze *m, int neighbor_list[]);
+int random_neighbor(int neighbor_list[]);
 
 void print_maze(maze *m);
 
