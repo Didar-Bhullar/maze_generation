@@ -6,8 +6,8 @@ int main(void) {
     maze m;
 
     maze_init(&m);
-    
-    int index_test = 4;
+
+    int index_test = 0;
 
 
     int top_n_i;
@@ -15,7 +15,12 @@ int main(void) {
     int left_n_i;
     int right_n_i;
 
-    has_neighbor(&(m.cells[index_test]), &m);
+    int neighbor_list[4] = { -1, -1, -1, -1};
+
+    has_neighbor(&(m.cells[index_test]), &m, neighbor_list);
+    for(int i = 0; i < 4; i++) {
+        printf("neighbor: %d\n", neighbor_list[i]);
+    }
 
     //bool top = top_neighbor(&(m.cells[index_test]), &top_n_i);
     //bool bottom = bottom_neighbor(&(m.cells[index_test]), &bot_n_i);

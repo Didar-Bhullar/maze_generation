@@ -44,35 +44,44 @@ bool right_neighbor(cell *c, int *storage){
     return false;
 };
 
-bool has_neighbor(cell *c, maze *m){
+bool has_neighbor(cell *c, maze *m, int neighbor_list[]){
+    bool has_neighbor = false;
     int index;
 
     if (top_neighbor(c, &index)) {
         if (!(m->cells[index].visited)) {
             puts("has neighbor top");
-            return true;
+            neighbor_list[0] = index;
+            has_neighbor = true;
         }
     };
     if (bottom_neighbor(c, &index)) {
         if (!(m->cells[index].visited)) {
             puts("has neighbor bot");
-            return true;
+            neighbor_list[1] = index;
+            has_neighbor =  true;
         }
     };
     if (left_neighbor(c, &index)) {
         if (!(m->cells[index].visited)) {
             puts("has neighbor left");
-            return true;
+            neighbor_list[2] = index;
+            has_neighbor  = true;
         }
     };
     if (right_neighbor(c, &index)) {
         if (!(m->cells[index].visited)) {
             puts("has neighbor right");
-            return true;
+            neighbor_list[3] = index;
+            has_neighbor  = true;
         }
     };
-    puts("no neighbor");
-    return false;       
+
+    if (!has_neighbor) {
+        puts("no neighbor");
+    };
+
+    return has_neighbor;      
 }
 
 
