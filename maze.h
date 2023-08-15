@@ -20,6 +20,8 @@ bool bottom_neighbor(cell *c, int *storage);
 bool left_neighbor(cell *c, int *storage);
 bool right_neighbor(cell *c, int *storage);
 
+bool has_neighbor(cell *c, maze *m);
+
 void print_maze(maze *m);
 
 #endif
