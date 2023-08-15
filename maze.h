@@ -10,7 +10,7 @@
 
 typedef struct maze {
     cell cells[MAZE_SIZE * MAZE_SIZE];
-
+    int neighbor_list[4];
 } maze;
 
 void maze_init(maze *m);
@@ -20,9 +20,9 @@ bool bottom_neighbor(cell *c, int *storage);
 bool left_neighbor(cell *c, int *storage);
 bool right_neighbor(cell *c, int *storage);
 
-void clear_neighbor_list(int neighbor_list[]);
-bool has_neighbor(cell *c, maze *m, int neighbor_list[]);
-int random_neighbor(int neighbor_list[]);
+void clear_neighbor_list(maze *m);
+bool has_neighbor(cell *c, maze *m);
+int random_neighbor(maze *m);
 
 void break_wall(maze *m, int *c_index, int *t_index);
 

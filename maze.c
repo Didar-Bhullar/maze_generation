@@ -10,6 +10,9 @@ void maze_init(maze *m) {
         c.index = i;
         m->cells[i] = c;
     }
+    for (int i = 0; i < 4; i ++) { 
+        m->neighbor_list[i] = -1;
+    };
 
     srand(time(NULL));
 }
@@ -47,35 +50,35 @@ bool right_neighbor(cell *c, int *storage){
     return false;
 };
 
-bool has_neighbor(cell *c, maze *m, int neighbor_list[]){
+bool has_neighbor(cell *c, maze *m){
     bool has_neighbor = false;
     int index;
 
     if (top_neighbor(c, &index)) {
         if (!(m->cells[index].visited)) {
             puts("has neighbor top");
-            neighbor_list[0] = index;
+            m->neighbor_list[0] = index;
             has_neighbor = true;
         }
     };
     if (bottom_neighbor(c, &index)) {
         if (!(m->cells[index].visited)) {
             puts("has neighbor bot");
-            neighbor_list[1] = index;
+            m->neighbor_list[1] = index;
             has_neighbor =  true;
         }
     };
     if (left_neighbor(c, &index)) {
         if (!(m->cells[index].visited)) {
             puts("has neighbor left");
-            neighbor_list[2] = index;
+            m->neighbor_list[2] = index;
             has_neighbor  = true;
         }
     };
     if (right_neighbor(c, &index)) {
         if (!(m->cells[index].visited)) {
             puts("has neighbor right");
-            neighbor_list[3] = index;
+            m->neighbor_list[3] = index;
             has_neighbor  = true;
         }
     };
@@ -87,18 +90,22 @@ bool has_neighbor(cell *c, maze *m, int neighbor_list[]){
     return has_neighbor;      
 }
 
-int random_neighbor(int neighbor_list[]) {
+int random_neighbor(maze *m) {
+    int i;
     while(true) {
         int r = rand() % 4;
-        if (neighbor_list[r] != -1) {
-            return neighbor_list[r];
+        if (m->neighbor_list[r] != -1) {
+            i = m->neighbor_list[r];
+            break;
         };
     };
+    clear_neighbor_list(m);
+    return i;
 }
 
-void clear_neighbor_list(int neighbor_list[]) {
+void clear_neighbor_list(maze *m) {
     for (int i = 0; i < 4; i++) { 
-        neighbor_list[i] = -1;
+        m->neighbor_list[i] = -1;
     }
 }
 
