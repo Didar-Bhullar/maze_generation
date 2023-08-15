@@ -15,10 +15,10 @@ typedef struct maze {
 
 void maze_init(maze *m);
 
-int top_index(cell *c);
-int bottom_index(cell *c);
-int left_index(cell *c);
-int right_index(cell *c);
+bool top_neighbor(cell *c, int *storage);
+int bottom_neighbor(cell *c, int *storage);
+int left_neighbor(cell *c, int *storage);
+int right_neighbor(cell *c, int *storage);
 
 void print_maze(maze *m);
 

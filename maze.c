@@ -11,20 +11,37 @@ void maze_init(maze *m) {
     }
 }
 
-int top_index(cell *c){
-    return (((c->x) - 1) * MAZE_SIZE) + ((c->y));
+bool top_neighbor(cell *c, int *storage){
+    if ((c->x) > 0){
+        *storage = (((c->x) - 1) * MAZE_SIZE) + ((c->y));
+        return true;
+    }
+
+    return false;
 };
 
-int bottom_index(cell *c){
-    return (((c->x) + 1) * MAZE_SIZE) + ((c->y));
+int bottom_neighbor(cell *c, int *storage){
+    if ((c->x) < (MAZE_SIZE -1)){
+        *storage = (((c->x) + 1) * MAZE_SIZE) + ((c->y));
+        return true;
+    }
+    return false;
 };
 
-int left_index(cell *c){
-    return (((c->x)) * MAZE_SIZE) + ((c->y) -1);
+int left_neighbor(cell *c, int *storage){
+    if ((c->y) > 0){
+        *storage =  (((c->x)) * MAZE_SIZE) + ((c->y) -1);
+        return true;
+    }
+    return false;
 };
 
-int right_index(cell *c){
-    return (((c->x)) * MAZE_SIZE) + ((c->y)+1);
+int right_neighbor(cell *c, int *storage){
+    if ((c->y) < (MAZE_SIZE -1)){
+        *storage = (((c->x)) * MAZE_SIZE) + ((c->y)+1);
+        return true;
+    }
+    return false;
 };
 
 
