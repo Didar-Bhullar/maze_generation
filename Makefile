@@ -1,8 +1,8 @@
 build:
-	gcc -o maze_generation.o maze_generation.c
+	gcc -o main.o main.c maze.c stack.c cell.c -Wall -Wextra
 
 run:
-	./maze_generation.o
+	./main.o
 
 clean:
 	rm -rf *.o
