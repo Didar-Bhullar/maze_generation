@@ -17,8 +17,8 @@ void drawer_init() {
     "maze_generation",
     SDL_WINDOWPOS_CENTERED,
     SDL_WINDOWPOS_CENTERED,
-    3 * scale_factor + 20,
-    3 * scale_factor + 20,
+    MAZE_SIZE * scale_factor + 20,
+    MAZE_SIZE * scale_factor + 20,
     0
     );
 
@@ -33,60 +33,77 @@ void drawer_init() {
 }
 
 void drawer_render(maze *m) { 
-  SDL_SetRenderDrawColor(renderer, 255,255,255,255);
-  //SDL_SetRenderDrawColor(renderer, 0,0,0,255);
-  SDL_RenderClear(renderer);
+    SDL_SetRenderDrawColor(renderer, 255,255,255,255);
+    //SDL_SetRenderDrawColor(renderer, 0,0,0,255);
+    SDL_RenderClear(renderer);
 
-  SDL_SetRenderDrawColor(renderer, 0,0,0,255);
+    SDL_SetRenderDrawColor(renderer, 0,0,0,255);
+
+
     for(int i = 0; i < (MAZE_SIZE * MAZE_SIZE); i++) { 
-        if (m->cells[i].visited) {
-            int x = (m->cells[i].x) * scale_factor;
-            int y = (m->cells[i].y) * scale_factor;
+        cell c = m->cells[i];
+        int x = ((c.x) * scale_factor);
+        int y = ((c.y) * scale_factor);
 
-            //top line
-            SDL_RenderDrawLine(renderer, 
-                               x, 
-                               y, 
-                               x + scale_factor,
-                               y);
+        printf("***************\n");
+        printf("For cell at index i: %d\n, top wall says: %d\n bot wall: %d\n",i, c.top_wall, c.bottom_wall);
+        printf("***************\n");
 
-            //bot line
+        //top
+        if (c.top_wall) { 
             SDL_RenderDrawLine(renderer, 
-                               x, 
-                               y + scale_factor, 
-                               x + scale_factor, 
-                               y + scale_factor);
-            //left line
-            SDL_RenderDrawLine(renderer, 
-                               x, 
                                y, 
                                x, 
-                               y + scale_factor);
-            //right line
+                               y + scale_factor,
+                               x);
+        };
+
+        //bot line
+        if (c.bottom_wall) {
+        SDL_RenderDrawLine(renderer, 
+                            y, 
+                            x + scale_factor, 
+                            y + scale_factor, 
+                            x + scale_factor);
+        };
+
+
+                    ////left line
+        if (c.left_wall) {
             SDL_RenderDrawLine(renderer, 
-                               x + scale_factor, 
-                               y, 
-                               x + scale_factor, 
-                               y + scale_factor);
+                                y, 
+                                x, 
+                                y, 
+                                x + scale_factor);
 
-
-
-            //bot line                  
-            //SDL_RenderDrawLine(renderer, 
-                              //x,
-                              //y + scale_factor, 
-                              //x + scale_factor,
-                              //y + scale_factor);
-            //SDL_Rect rect = { ((m->cells[i].x) * scale_factor),((m->cells[i].y) * scale_factor),
-                //scale_factor, scale_factor};
-
-            
-
-            //SDL_RenderDrawRect(renderer, &rect);
         }
+
+        if (c.left_wall) {
+            SDL_RenderDrawLine(renderer, 
+                                y, 
+                                x, 
+                                y, 
+                                x + scale_factor);
+
+        }
+
+                    //right line
+        if (c.right_wall) {
+            SDL_RenderDrawLine(renderer, 
+                                y + scale_factor, 
+                                x, 
+                                y + scale_factor, 
+                                x + scale_factor);
+        }
+
+                            
+
+        //SDL_Rect rect = { x ,y , scale_factor, scale_factor};
+        //SDL_RenderDrawRect(renderer, &rect);
     }
 
-  SDL_RenderPresent(renderer);
+    SDL_RenderPresent(renderer);
+    SDL_Delay(300);
 }
 
 void drawer_input() { 

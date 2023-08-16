@@ -15,29 +15,25 @@ int main(void) {
     m.cells[0].visited = true;
     stack_push(&s, 0);
 
-    while(1) {
-        drawer_input();
         
-        while(!is_empty(&s)) {
-            drawer_render(&m);
-            
-            stack_pop(&s,&current_index);
+    while(!is_empty(&s)) {
+        stack_pop(&s,&current_index);
     
-            if (has_neighbor(&(m.cells[current_index]), &m)) {
-                stack_push(&s, current_index);
-                int neighbor_index = random_neighbor(&m);
+        if (has_neighbor(&(m.cells[current_index]), &m)) {
+            stack_push(&s, current_index);
+            int neighbor_index = random_neighbor(&m);
 
-                break_wall(&m, &current_index, &neighbor_index);
-                m.cells[neighbor_index].visited = true;
-                stack_push(&s, neighbor_index);
-                drawer_delay(300);
-            
-            }
+            break_wall(&m, &current_index, &neighbor_index);
+            m.cells[neighbor_index].visited = true;
+            stack_push(&s, neighbor_index); 
         }
-        drawer_render(&m);
     }
 
-    //stack_print(&s);
-    //print_maze(&m);
+    print_maze(&m);
+
+    while (true) {
+        drawer_input();
+        drawer_render(&m);
+    }
     return 0;
 }
