@@ -56,35 +56,35 @@ bool has_neighbor(cell *c, maze *m){
 
     if (top_neighbor(c, &index)) {
         if (!(m->cells[index].visited)) {
-            puts("has neighbor top");
+            //puts("has neighbor top");
             m->neighbor_list[0] = index;
             has_neighbor = true;
         }
     };
     if (bottom_neighbor(c, &index)) {
         if (!(m->cells[index].visited)) {
-            puts("has neighbor bot");
+            //puts("has neighbor bot");
             m->neighbor_list[1] = index;
             has_neighbor =  true;
         }
     };
     if (left_neighbor(c, &index)) {
         if (!(m->cells[index].visited)) {
-            puts("has neighbor left");
+            //puts("has neighbor left");
             m->neighbor_list[2] = index;
             has_neighbor  = true;
         }
     };
     if (right_neighbor(c, &index)) {
         if (!(m->cells[index].visited)) {
-            puts("has neighbor right");
+            //puts("has neighbor right");
             m->neighbor_list[3] = index;
             has_neighbor  = true;
         }
     };
 
     if (!has_neighbor) {
-        puts("no neighbor");
+        //puts("no neighbor");
     };
 
     return has_neighbor;      
@@ -111,29 +111,29 @@ void clear_neighbor_list(maze *m) {
 
 void break_wall(maze *m, int *c_index, int *t_index) {
 
-    printf("the value of c-index is: %d", *c_index);
-    printf("the value of t-index is: %d", *t_index);
+    //printf("the value of c-index is: %d", *c_index);
+    //printf("the value of t-index is: %d", *t_index);
 
     if ((*c_index - MAZE_SIZE) == *t_index) {
-        puts("broke top and bottom wall");
+        //puts("broke top and bottom wall");
         m->cells[*c_index].top_wall = false;
         m->cells[*t_index].bottom_wall = false;
     };
 
     if ((*c_index + MAZE_SIZE) == *t_index) {
-        puts("broke bottom and top wall");
+        //puts("broke bottom and top wall");
         m->cells[*c_index].bottom_wall = false;
         m->cells[*t_index].top_wall = false;
     };
 
     if ((*c_index - 1) == *t_index) {
-        puts("broke left and right wall");
+        //puts("broke left and right wall");
         m->cells[*c_index].left_wall = false;
         m->cells[*t_index].right_wall = false;
     };
 
     if ((*c_index + 1) == *t_index) { 
-        puts("broke right and left wall");
+        //puts("broke right and left wall");
         m->cells[*c_index].right_wall = false;
         m->cells[*t_index].left_wall = false;
     };
