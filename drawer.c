@@ -44,52 +44,21 @@ void drawer_render(maze *m, int delay_ms) {
         cell c = m->cells[i];
 
         if (c.visited) {
-
           int scale_factor = window_size / (m->maze_size);
           int x = ((c.x) * scale_factor);
           int y = ((c.y) * scale_factor);
 
-          printf("***************\n");
-          printf("For cell at index i: %d\n, top wall says: %d\n bot wall: %d\n",i, c.top_wall, c.bottom_wall);
-          printf("***************\n");
-
           //top
-          if (c.top_wall) { 
-              SDL_RenderDrawLine(renderer, 
-                                x, 
-                                y, 
-                                x + scale_factor,
-                                y);
-          };
+          if (c.top_wall) { SDL_RenderDrawLine(renderer, x, y, x + scale_factor,y); };
 
           //bot line
-          if (c.bottom_wall) {
-          SDL_RenderDrawLine(renderer, 
-                              x, 
-                              y + scale_factor, 
-                              x + scale_factor, 
-                              y + scale_factor);
-          };
+          if (c.bottom_wall) { SDL_RenderDrawLine(renderer, x, y + scale_factor, x + scale_factor, y + scale_factor); };
 
+          //left line
+          if (c.left_wall) { SDL_RenderDrawLine(renderer, x, y, x, y + scale_factor); };
 
-                      ////left line
-          if (c.left_wall) {
-              SDL_RenderDrawLine(renderer, 
-                                  x, 
-                                  y, 
-                                  x, 
-                                  y + scale_factor);
-
-          }
-
-                      //right line
-          if (c.right_wall) {
-              SDL_RenderDrawLine(renderer, 
-                                  x + scale_factor, 
-                                  y, 
-                                  x + scale_factor, 
-                                  y + scale_factor);
-          }
+          //right line
+          if (c.right_wall) { SDL_RenderDrawLine(renderer, x + scale_factor, y, x + scale_factor, y + scale_factor); };
         }
     }
 

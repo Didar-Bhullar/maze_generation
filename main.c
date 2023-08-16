@@ -10,6 +10,8 @@ int main(int argc, char **argv) {
         exit(1);
     } 
 
+    const char *mssg = "maze generation complete!";
+
     long maze_size = strtol(argv[1], NULL, 10);
     long delay_ms = strtol(argv[2], NULL, 10);
 
@@ -42,7 +44,7 @@ int main(int argc, char **argv) {
         }
     }
 
-    print_maze(&m);
+    puts(mssg);
 
     while (true) {
         drawer_input();

@@ -8,7 +8,6 @@
 
 
 typedef struct maze {
-    //cell cells[MAZE_SIZE * MAZE_SIZE];
     cell *cells;
     int neighbor_list[4];
     int maze_size;
