@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define STACK_SIZE 9
+#define STACK_SIZE 12
 
 typedef struct stack {
     int top;

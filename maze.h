@@ -6,7 +6,7 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define MAZE_SIZE 3
+#define MAZE_SIZE 4
 
 typedef struct maze {
     cell cells[MAZE_SIZE * MAZE_SIZE];

@@ -7,6 +7,7 @@ int main(void) {
     maze m;
 
     int current_index;
+    int target_index = 0;
 
     stack_init(&s);
     maze_init(&m);
@@ -17,6 +18,8 @@ int main(void) {
 
         
     while(!is_empty(&s)) {
+        drawer_input();
+        drawer_render(&m, target_index);
         stack_pop(&s,&current_index);
     
         if (has_neighbor(&(m.cells[current_index]), &m)) {
@@ -26,6 +29,7 @@ int main(void) {
             break_wall(&m, &current_index, &neighbor_index);
             m.cells[neighbor_index].visited = true;
             stack_push(&s, neighbor_index); 
+            target_index = neighbor_index;
         }
     }
 
@@ -33,7 +37,7 @@ int main(void) {
 
     while (true) {
         drawer_input();
-        drawer_render(&m);
+        drawer_render(&m, target_index);
     }
     return 0;
 }
