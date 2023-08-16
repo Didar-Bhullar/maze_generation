@@ -1,5 +1,5 @@
 build:
-	gcc -o main.o main.c maze.c stack.c cell.c -Wall -Wextra
+	gcc -o main.o main.c maze.c stack.c cell.c  drawer.c -Wall -Wextra -lSDL2
 
 run:
 	./main.o

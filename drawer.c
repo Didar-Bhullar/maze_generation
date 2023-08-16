@@ -17,8 +17,8 @@ void drawer_init() {
     "maze_generation",
     SDL_WINDOWPOS_CENTERED,
     SDL_WINDOWPOS_CENTERED,
-    3 * scale_factor,
-    3 * scale_factor,
+    3 * scale_factor + 20,
+    3 * scale_factor + 20,
     0
     );
 
@@ -40,10 +40,49 @@ void drawer_render(maze *m) {
   SDL_SetRenderDrawColor(renderer, 0,0,0,255);
     for(int i = 0; i < (MAZE_SIZE * MAZE_SIZE); i++) { 
         if (m->cells[i].visited) {
-            SDL_Rect rect = { ((m->cells[i].x) * scale_factor),((m->cells[i].y) * scale_factor),
-                            scale_factor, scale_factor};
+            int x = (m->cells[i].x) * scale_factor;
+            int y = (m->cells[i].y) * scale_factor;
 
-            SDL_RenderDrawRect(renderer, &rect);
+            //top line
+            SDL_RenderDrawLine(renderer, 
+                               x, 
+                               y, 
+                               x + scale_factor,
+                               y);
+
+            //bot line
+            SDL_RenderDrawLine(renderer, 
+                               x, 
+                               y + scale_factor, 
+                               x + scale_factor, 
+                               y + scale_factor);
+            //left line
+            SDL_RenderDrawLine(renderer, 
+                               x, 
+                               y, 
+                               x, 
+                               y + scale_factor);
+            //right line
+            SDL_RenderDrawLine(renderer, 
+                               x + scale_factor, 
+                               y, 
+                               x + scale_factor, 
+                               y + scale_factor);
+
+
+
+            //bot line                  
+            //SDL_RenderDrawLine(renderer, 
+                              //x,
+                              //y + scale_factor, 
+                              //x + scale_factor,
+                              //y + scale_factor);
+            //SDL_Rect rect = { ((m->cells[i].x) * scale_factor),((m->cells[i].y) * scale_factor),
+                //scale_factor, scale_factor};
+
+            
+
+            //SDL_RenderDrawRect(renderer, &rect);
         }
     }
 
