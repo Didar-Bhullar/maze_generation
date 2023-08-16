@@ -9,7 +9,7 @@ SDL_Renderer *renderer = NULL;
 #define padding 10
 #define window_size 500
 
-void drawer_init(maze *m) {
+void drawer_init() {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) { 
         fprintf(stderr, "Error initalizing sdl");
     }
@@ -33,7 +33,7 @@ void drawer_init(maze *m) {
     }
 }
 
-void drawer_render(maze *m) { 
+void drawer_render(maze *m, int delay_ms) { 
     SDL_SetRenderDrawColor(renderer, 255,255,255,255);
     SDL_RenderClear(renderer);
 
@@ -94,7 +94,7 @@ void drawer_render(maze *m) {
     }
 
     SDL_RenderPresent(renderer);
-    SDL_Delay(10);
+    drawer_delay(delay_ms);
 }
 
 void drawer_input() { 
