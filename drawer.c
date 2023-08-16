@@ -6,8 +6,8 @@
 SDL_Window *window = NULL;
 SDL_Renderer *renderer = NULL;
 
-#define scale_factor 10
 #define padding 10
+#define window_size 500
 
 void drawer_init(maze *m) {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) { 
@@ -18,8 +18,8 @@ void drawer_init(maze *m) {
     "maze_generation",
     SDL_WINDOWPOS_CENTERED,
     SDL_WINDOWPOS_CENTERED,
-    (m->maze_size) * scale_factor + padding,
-    (m->maze_size) * scale_factor + padding,
+    window_size + 20,
+    window_size + 20,
     0
     );
 
@@ -45,7 +45,7 @@ void drawer_render(maze *m) {
 
         if (c.visited) {
 
-        
+          int scale_factor = window_size / (m->maze_size);
           int x = ((c.x) * scale_factor);
           int y = ((c.y) * scale_factor);
 

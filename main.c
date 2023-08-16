@@ -4,7 +4,7 @@
 
 int main(void) { 
     int current_index;
-    int maze_size = 25;
+    int maze_size = 20;
     int stack_size = maze_size * maze_size;
 
     stack s;
