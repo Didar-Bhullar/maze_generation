@@ -87,7 +87,6 @@ void drawer_render(maze *m) {
     }
 
   SDL_RenderPresent(renderer);
-  SDL_Delay(300);
 }
 
 void drawer_input() { 
@@ -102,4 +101,8 @@ void drawer_input() {
         break;
     }
   }
+}
+
+void drawer_delay(int delay_ms) { 
+    SDL_Delay(delay_ms);
 }

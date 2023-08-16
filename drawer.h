@@ -5,5 +5,6 @@
 void drawer_init();
 void drawer_render(maze *m);
 void drawer_input();
+void drawer_delay(int delay_ms);
 
 #endif

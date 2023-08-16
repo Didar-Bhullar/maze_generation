@@ -30,9 +30,11 @@ int main(void) {
                 break_wall(&m, &current_index, &neighbor_index);
                 m.cells[neighbor_index].visited = true;
                 stack_push(&s, neighbor_index);
+                drawer_delay(300);
             
             }
         }
+        drawer_render(&m);
     }
 
     //stack_print(&s);
