@@ -7,7 +7,7 @@ SDL_Window *window = NULL;
 SDL_Renderer *renderer = NULL;
 
 #define padding 10
-#define window_size 500
+#define window_size 750
 
 void drawer_init() {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) { 
@@ -18,8 +18,8 @@ void drawer_init() {
     "maze_generation",
     SDL_WINDOWPOS_CENTERED,
     SDL_WINDOWPOS_CENTERED,
-    window_size + 20,
-    window_size + 20,
+    window_size + padding,
+    window_size + padding,
     0
     );
 

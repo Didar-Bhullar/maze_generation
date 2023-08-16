@@ -10,9 +10,9 @@ int main(int argc, char **argv) {
         exit(1);
     } 
 
-    //int maze_size = argv[1];
     long maze_size = strtol(argv[1], NULL, 10);
     long delay_ms = strtol(argv[2], NULL, 10);
+
     int stack_size = maze_size * maze_size;
     int current_index;
 
