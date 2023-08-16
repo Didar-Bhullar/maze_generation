@@ -1,12 +1,14 @@
 #include "stack.h"
 
-void stack_init(stack *s){
+void stack_init(stack *s, int size){
     s->top = 0;
     s->nb_elements = 0;
+    s->size = size;
+    s->buffer = malloc(size * sizeof(int));
 }
 
 int stack_push(stack *s, int value) {
-    if (s->nb_elements == STACK_SIZE) {
+    if (s->nb_elements == s->size) {
         return false;
     }
 

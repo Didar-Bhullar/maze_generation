@@ -5,16 +5,16 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define STACK_SIZE 12
 
 typedef struct stack {
     int top;
     int nb_elements;
-    int buffer[STACK_SIZE]; 
+    int *buffer;
+    int size; 
 
 } stack;
 
-void stack_init(stack *s);
+void stack_init(stack *s, int size);
 int stack_push(stack *s, int value);
 int stack_pop(stack *s, int *storage);
 bool is_empty(stack *s);

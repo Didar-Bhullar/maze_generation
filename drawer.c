@@ -6,10 +6,10 @@
 SDL_Window *window = NULL;
 SDL_Renderer *renderer = NULL;
 
-#define scale_factor 100
+#define scale_factor 10
 #define padding 10
 
-void drawer_init() {
+void drawer_init(maze *m) {
     if (SDL_Init(SDL_INIT_EVERYTHING) != 0) { 
         fprintf(stderr, "Error initalizing sdl");
     }
@@ -18,8 +18,8 @@ void drawer_init() {
     "maze_generation",
     SDL_WINDOWPOS_CENTERED,
     SDL_WINDOWPOS_CENTERED,
-    MAZE_SIZE * scale_factor + padding,
-    MAZE_SIZE * scale_factor + padding,
+    (m->maze_size) * scale_factor + padding,
+    (m->maze_size) * scale_factor + padding,
     0
     );
 
@@ -40,7 +40,7 @@ void drawer_render(maze *m) {
     SDL_SetRenderDrawColor(renderer, 0,0,0,255);
 
 
-    for(int i = 0; i < (MAZE_SIZE * MAZE_SIZE); i++) { 
+    for(int i = 0; i < (m->maze_size * m->maze_size); i++) { 
         cell c = m->cells[i];
 
         if (c.visited) {

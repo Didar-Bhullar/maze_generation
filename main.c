@@ -3,13 +3,16 @@
 #include "drawer.h"
 
 int main(void) { 
+    int current_index;
+    int maze_size = 25;
+    int stack_size = maze_size * maze_size;
+
     stack s;
     maze m;
-    int current_index;
 
-    stack_init(&s);
-    maze_init(&m);
-    drawer_init();
+    stack_init(&s, stack_size);
+    maze_init(&m, maze_size);
+    drawer_init(&m);
 
     m.cells[0].visited = true;
     stack_push(&s, 0);

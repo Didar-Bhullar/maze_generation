@@ -6,19 +6,20 @@
 #include <stdlib.h>
 #include <stdbool.h>
 
-#define MAZE_SIZE 4
 
 typedef struct maze {
-    cell cells[MAZE_SIZE * MAZE_SIZE];
+    //cell cells[MAZE_SIZE * MAZE_SIZE];
+    cell *cells;
     int neighbor_list[4];
+    int maze_size;
 } maze;
 
-void maze_init(maze *m);
+void maze_init(maze *m, int maze_s);
 
-bool top_neighbor(cell *c, int *storage);
-bool bottom_neighbor(cell *c, int *storage);
-bool left_neighbor(cell *c, int *storage);
-bool right_neighbor(cell *c, int *storage);
+bool top_neighbor(cell *c, int *storage, maze *m);
+bool bottom_neighbor(cell *c, int *storage, maze *m);
+bool left_neighbor(cell *c, int *storage, maze *m);
+bool right_neighbor(cell *c, int *storage, maze *m);
 
 void clear_neighbor_list(maze *m);
 bool has_neighbor(cell *c, maze *m);
