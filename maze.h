@@ -2,15 +2,14 @@
 #define MAZE_H
 
 #include "cell.h"
+#include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdbool.h>
-
 
 typedef struct maze {
-    cell *cells;
-    int neighbor_list[4];
-    int maze_size;
+  cell *cells;
+  int neighbor_list[4];
+  int maze_size;
 } maze;
 
 void maze_init(maze *m, int maze_s);
