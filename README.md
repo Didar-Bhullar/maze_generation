@@ -6,9 +6,8 @@
 ### compile
 `make`
 
-### config args
-`./main.o <maze_size> <time_delay>`
-
 ### run
+`./main.o <maze_size> <time_delay>`</br>
+or</br>
 `make run`
 
